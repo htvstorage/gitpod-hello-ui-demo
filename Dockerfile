@@ -19,6 +19,8 @@ COPY novnc-index.html /opt/novnc/index.html
 # Add VNC startup script
 COPY start-vnc-session.sh /usr/bin/
 RUN chmod +x /usr/bin/start-vnc-session.sh
+COPY launch.sh /opt/novnc/utils
+RUN chmod +x  /opt/novnc/utils/launch.sh
 
 # This is a bit of a hack. At the moment we have no means of starting background
 # tasks from a Dockerfile. This workaround checks, on each bashrc eval, if the X
