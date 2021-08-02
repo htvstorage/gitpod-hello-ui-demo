@@ -22,6 +22,11 @@ RUN chmod +x /usr/bin/start-vnc-session.sh
 COPY launch.sh /opt/novnc/utils
 RUN chmod +x  /opt/novnc/utils/launch.sh
 
+RUN sudo install-packages apt-get install xdg-utils libnss3 libnspr4 libgbm1 fonts-liberation libwayland-server0
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN sudo dpkg -i google-chrome-stable_current_amd64.deb \
+    && rm -rf google-chrome-stable_current_amd64.deb
+
 # This is a bit of a hack. At the moment we have no means of starting background
 # tasks from a Dockerfile. This workaround checks, on each bashrc eval, if the X
 # server is running on screen 0, and if not starts Xvfb, x11vnc and novnc.
